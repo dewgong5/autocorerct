@@ -17,7 +17,9 @@ Why is this project of interest to you?
 ## User Stories
 Here are several user stories for the project:
 - As a user, I want to be able to **add** a new word to a list of words that appear in the game. 
-- As a user, I want to be able to **view** a personalized list of words that I have added and delete certain words.
+- As a user, I want to be able to **view** a personalized list of words that I have added 
+- As a user, I want to be able to **delete** certain words from my personalized list.
 - As a user, I want to be able to **view** randomly scattered and unordered letters of a word in a game level. 
-- As a user, I want to be able to **play the game** by typing the correct order of letters , getting feedback on the accuracy of my typing, and obtaining a score for every correct spelling of a word.
+- As a user, I want to be able to **play the game** by typing the correct order of letters.
+- As a user, I want to be able to **get feedback** on the accuracy of my typing and obtaining a score for every correct spelling of a word.
 
