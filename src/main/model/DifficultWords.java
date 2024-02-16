@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 //Represents an individual difficult word to be used in the game
 // Each have a correct spelling of a word, the level of difficulty, and typing progress
 public class DifficultWords {
@@ -7,13 +10,17 @@ public class DifficultWords {
     private int difficultyLevel;
     private boolean isTyped;
     private String leftToType;
+    private String spellingRandomized;
 
-    //EFFECTS: creates a new difficult word instance with a spelling, level of difficulty, and typing progress
+    //EFFECTS: creates a new difficult word instance with a spelling, level of difficulty, typing progress
+    // and randomized version of the spelling (still empty as no randomization has occurred)
     public DifficultWords(String word) {
         this.spelling = word;
         checkDifficulty();
         isTyped = false;
         leftToType = spelling;
+        spellingRandomized = "";
+
 
     }
 
@@ -73,5 +80,32 @@ public class DifficultWords {
     public void setAlreadyTyped() {
         isTyped = true;
     }
+
+    //MODIFIES: this
+    //EFFECTS: randomizes the spelling of a word
+    public void randomizeWord() {
+        spellingRandomized = "";
+        ArrayList<String> arrayOneString = new ArrayList<>();
+        for (int i = 0;i != spelling.length();i++) {
+            String c = spelling.substring(i, i + 1);
+            arrayOneString.add(c);
+        }
+
+        Collections.shuffle(arrayOneString);
+
+        for (String s: arrayOneString) {
+            spellingRandomized = spellingRandomized + s;
+        }
+    }
+
+    public String getSpellingRandomized() {
+        return spellingRandomized;
+    }
+
+
+
+
+
+
 
 }
