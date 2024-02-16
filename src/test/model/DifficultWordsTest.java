@@ -11,14 +11,18 @@ class DifficultWordsTest {
     private DifficultWords dw3;
     private DifficultWords dw4;
     private DifficultWords dw5;
+    private DifficultWords dw6;
+
 
     @BeforeEach
-    public void setUp()  {
+    public void setUp() {
         dw1 = new DifficultWords("abc");
         dw2 = new DifficultWords("HelloWorld");
         dw4 = new DifficultWords("GettingIntoComputerScience");
         dw5 = new DifficultWords("HelloWorldd");
         dw3 = new DifficultWords("abab");
+        dw6 = new DifficultWords("z");
+
 
     }
 
@@ -27,7 +31,9 @@ class DifficultWordsTest {
         assertEquals("abab", dw3.getSpelling());
         assertEquals(1, dw3.getLevel());
         assertFalse(dw3.getStatus());
-        assertEquals("abab",dw3.getLeftToType());
+        assertEquals("abab", dw3.getLeftToType());
+        assertEquals("", dw3.getSpellingRandomized());
+
     }
 
     @Test
@@ -126,15 +132,49 @@ class DifficultWordsTest {
     }
 
     @Test
+    public void randomizeWordLong() {
+        dw4.randomizeWord();
+        assertEquals(dw4.getSpelling().length(), dw4.getSpellingRandomized().length());
+
+    }
+
+    @Test
+    public void randomizeWordSingle() {
+        dw6.randomizeWord();
+        assertTrue(dw6.getSpelling().equals(dw6.getSpellingRandomized()));
+        assertEquals(dw6.getSpelling().length(), dw6.getSpellingRandomized().length());
+
+    }
+
+    @Test
+    public void randomizeWordMultiple() {
+        assertEquals("", dw4.getSpellingRandomized());
+        dw4.randomizeWord();
+        assertEquals(dw4.getSpelling().length(), dw4.getSpellingRandomized().length());
+        assertFalse(dw4.getSpellingRandomized().equals(dw4.getSpelling()));
+        dw4.randomizeWord();
+        assertEquals(dw4.getSpelling().length(), dw4.getSpellingRandomized().length());
+        assertFalse(dw4.getSpellingRandomized().equals(dw4.getSpelling()));
+        dw5.randomizeWord();
+        assertEquals(dw5.getSpelling().length(), dw5.getSpellingRandomized().length());
+        assertFalse(dw5.getSpellingRandomized().equals(dw5.getSpelling()));
+
+    }
+
+
+    @Test
     public void setAlreadyTypedOfAWord() {
         assertFalse(dw1.getStatus());
         dw1.setAlreadyTyped();
         assertTrue(dw1.getStatus());
     }
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
