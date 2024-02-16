@@ -81,6 +81,8 @@ public class DifficultWords {
         isTyped = true;
     }
 
+    //CITATIONS:
+    // - https://www.geeksforgeeks.org/collections-shuffle-method-in-java-with-examples/
     //MODIFIES: this
     //EFFECTS: randomizes the spelling of a word
     public void randomizeWord() {
