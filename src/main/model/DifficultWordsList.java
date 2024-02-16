@@ -13,6 +13,7 @@ public class DifficultWordsList {
     }
 
     //REQUIRES: difficultWord.length() != 0 && difficultWord cannot contain whitespace
+    // !listOfDifficultWords.contains(difficultWord)
     //MODIFIES: this
     //EFFECTS: adds the given word into listOfDifficultWords
     public void addWord(DifficultWords difficultWord) {

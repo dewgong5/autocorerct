@@ -55,4 +55,86 @@ class DifficultWordsTest {
 
     }
 
+    @Test
+    public void getNextCharShort() {
+        assertEquals("a", dw1.getNextChar());
+
+    }
+
+    @Test
+    public void typeCharCorrectSmall() {
+        dw1.typeChar("a");
+        assertEquals("bc", dw1.getLeftToType());
+    }
+
+    @Test
+    public void typeCharCorrectCapital() {
+        dw2.typeChar("H");
+        assertEquals("elloWorld", dw2.getLeftToType());
+    }
+
+    @Test
+    public void typeCharWrong() {
+        dw1.typeChar("z");
+        assertEquals("abc", dw1.getLeftToType());
+    }
+
+    @Test
+    public void typeCharWrongCapital() {
+        dw2.typeChar("h");
+        assertEquals("HelloWorld", dw2.getLeftToType());
+    }
+
+    @Test
+    public void typeCharMultiple() {
+        dw2.typeChar("k");
+        assertEquals("HelloWorld", dw2.getLeftToType());
+        assertEquals(10, dw2.getLeftToType().length());
+        dw2.typeChar("H");
+        dw2.typeChar("e");
+        dw2.typeChar("l");
+        assertEquals("loWorld", dw2.getLeftToType());
+        dw2.typeChar("l");
+        dw2.typeChar("o");
+        dw2.typeChar("W");
+        assertEquals("orld", dw2.getLeftToType());
+        assertEquals(4, dw2.getLeftToType().length());
+        dw2.typeChar("o");
+        dw2.typeChar("r");
+        dw2.typeChar("l");
+        dw2.typeChar("d");
+        assertEquals("", dw2.getLeftToType());
+        assertEquals(0, dw2.getLeftToType().length());
+
+    }
+
+    @Test
+    public void typeCharEnding() {
+        dw1.typeChar("a");
+        dw1.typeChar("b");
+        assertEquals("c", dw1.getLeftToType());
+        assertEquals(1, dw1.getLeftToType().length());
+        dw1.typeChar("c");
+        assertEquals("", dw1.getLeftToType());
+        assertEquals(0, dw1.getLeftToType().length());
+    }
+
+    @Test
+    public void setSpellingOfAWord() {
+        dw1.setSpelling("doggy");
+        assertEquals("doggy", dw1.getSpelling());
+    }
+
+    @Test
+    public void setAlreadyTypedOfAWord() {
+        assertFalse(dw1.getStatus());
+        dw1.setAlreadyTyped();
+        assertTrue(dw1.getStatus());
+    }
+
+
+
+
+
+
 }
