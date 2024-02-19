@@ -12,7 +12,7 @@ public class DifficultWordsList {
         listOfDifficultWords = new ArrayList<>();
     }
 
-    //REQUIRES: difficultWord.length() != 0 && difficultWord cannot contain whitespace
+    //REQUIRES: difficultWord.length() != 0 && difficultWord cannot contain whitespace, numbers, capslock
     //MODIFIES: this
     //EFFECTS: adds the given word into listOfDifficultWords
     public void addWord(DifficultWords difficultWord) {
@@ -29,4 +29,5 @@ public class DifficultWordsList {
     public ArrayList<DifficultWords> getListOfDifficultWords() {
         return listOfDifficultWords;
     }
+
 }
