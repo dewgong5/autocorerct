@@ -12,20 +12,23 @@ public class AutocorerctApp {
     private final DifficultWordsList list;
     private boolean firstCustomization;
     private final DifficultWordsList gameOrder;
+    private int attempts;
 
-
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: creates an AutocorectApp class and runs the app
+    // instantiates several variables like list, firstCustomization, input, gameOrder, attempts
     public AutocorerctApp() {
         list = new DifficultWordsList();
         firstCustomization = true;
         input = new Scanner(System.in);
         gameOrder = new DifficultWordsList();
+        attempts = 0;
         startApp();
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: starts the app and displays the Home section and takes user inputs
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
+    //EFFECTS: starts the app and displays the Home section and takes user inputs, user has to type 1,2, or 3
     private void startApp() {
         displayHome();
         String userType = input.next();
@@ -35,8 +38,7 @@ public class AutocorerctApp {
     }
 
     //CITATION: displayHome method is inspired displayMenu method from UBC CPSC 210's TellerApp
-    //EFFECTS: displays the home screen of the game, where the user can add/remove words
-    //, view current list of words, and order them by difficulty
+    //EFFECTS: displays the home screen of the game, where the user can view their options
     private void displayHome() {
         System.out.println("=======================================================");
         System.out.println("      Welcome to Autocorect (Beta Version 1.0)");
@@ -51,6 +53,7 @@ public class AutocorerctApp {
     }
 
     //REQUIRES: inputted value to be either 1,2, or 3
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: moves the app into the appropriate section from either Play, Customization, or Exit
     private void produceResponse(int i) {
         if (i == 1) {
@@ -68,6 +71,7 @@ public class AutocorerctApp {
     }
 
 
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: shows the customization screen consisting of a list of words added to the game
     // user is able to add more or remove certain words.
     private void displayCustomization() {
@@ -100,6 +104,7 @@ public class AutocorerctApp {
 
     }
 
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: shows the choices in customization and respond accordingly, user must click either 1,2,3
     private void displayCustomizationChoices() {
         System.out.println("Please choose your action:");
@@ -120,7 +125,7 @@ public class AutocorerctApp {
 
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: adds a word into a list of difficult words,
     // word cannot contain space, numbers, or capital letters
     private void addNewWord() {
@@ -131,7 +136,7 @@ public class AutocorerctApp {
         displayCustomization();
     }
 
-    //MODIFIES: this
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: removes a word into a list of difficult words,
     // word cannot contain space, numbers, or capital letters
     // tells the user when it detects invalid input
@@ -157,22 +162,24 @@ public class AutocorerctApp {
         displayCustomization();
     }
 
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: shows the game level using the words in the customization
     private void playApp() {
         isItFirstCustomization();
         System.out.println("Ready or not, here it begins!");
+        attempts = 0;
         playTheGame();
         startApp();
 
     }
 
-    //MODIFIES: this
+    //CITATIONS: inspired by runTeller method in CPSC 210's TellerApp
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: allows the user to play the game  level, the user can see the random words
     //, type their guesses and get feedback (right or wrong), it ends the round once the score is 10
     private void playTheGame() {
         boolean playGame = true;
         int score = 0;
-        int attempts = 0;
         while (playGame) {
             createRandomOrder();
             String correctAnswer = pickRandomWord();
@@ -183,21 +190,26 @@ public class AutocorerctApp {
                 score++;
             } else {
                 System.out.println("Wrong! -1 score");
-                score--;
+                if (score > 0) {
+                    score--;
+                }
             }
             attempts++;
             System.out.println("Your score is: " + score);
-
             if (score == 10) {
-                System.out.println("Congratulations, you've finished one round!");
-                System.out.println("You did it in" + attempts + "attempts!");
+                printCongrats(attempts);
                 playGame = false;
             }
         }
     }
 
+    //EFFECTS: print the congratulations and how many attempts used
+    private void printCongrats(int attempts) {
+        System.out.println("Congratulations, you've finished one round!");
+        System.out.println("You did it in " + attempts + " attempts!");
+    }
 
-    //MODIFIES: this
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: creates a random word order to be used in the game, runs randomization on each element
     private void createRandomOrder() {
         for (int i = 0; i < list.getListOfDifficultWords().size(); i++) {
@@ -231,6 +243,8 @@ public class AutocorerctApp {
         return randomWord.getSpelling();
     }
 
+
+    //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: checks whether the user has added any words to customization,
     // if not prompts the user to add a word
     private void isItFirstCustomization() {
@@ -239,7 +253,5 @@ public class AutocorerctApp {
             displayCustomization();
         }
     }
-
-
 
 }

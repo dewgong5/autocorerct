@@ -12,6 +12,7 @@ public class DifficultWords {
     private String leftToType;
     private String spellingRandomized;
 
+    //MODIFIES: this
     //EFFECTS: creates a new difficult word instance with a spelling, level of difficulty, typing progress
     // and randomized version of the spelling (still empty as no randomization has occurred)
     public DifficultWords(String word) {
