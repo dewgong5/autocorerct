@@ -14,10 +14,10 @@ import java.util.Scanner;
 //CITATION: methods for saving files inspired by CPSC 210
 public class AutocorerctApp {
     private static final String JSON_STORE = "./data/difficultwordslist.json";
-    private final Scanner input;
+    private Scanner input;
     private DifficultWordsList list;
     private boolean firstCustomization;
-    private final DifficultWordsList gameOrder;
+    private DifficultWordsList gameOrder;
     private int attempts;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -28,7 +28,7 @@ public class AutocorerctApp {
     //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: creates an AutocorectApp class and runs the app
     // instantiates several variables like list, firstCustomization, input, gameOrder, attempts
-    public AutocorerctApp() {
+    public AutocorerctApp() throws FileNotFoundException {
         list = new DifficultWordsList();
         firstCustomization = true;
         input = new Scanner(System.in);

@@ -1,8 +1,14 @@
 package ui;
 
+import java.io.FileNotFoundException;
+
 //runs the App
 public class Main {
     public static void main(String[] args) {
-        new AutocorerctApp();
+        try {
+            new AutocorerctApp();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to run application: file not found");
+        }
     }
 }
