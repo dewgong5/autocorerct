@@ -22,4 +22,5 @@ Here are several user stories for the project:
 - As a user, I want to be able to **view** randomly scattered and unordered letters of a word in a game level. 
 - As a user, I want to be able to **play the game** by typing the correct order of letters.
 - As a user, I want to be able to **get feedback** on the accuracy of my typing and obtaining a score for every correct spelling of a word.
-
+- As a user, I want to be able to be reminded to **save** the current list of difficult words and choose whether to save or not.
+- As a user, I want to be able to **load** a previous list of difficult words when I start the application.

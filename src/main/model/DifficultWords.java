@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 //Represents an individual difficult word to be used in the game
 // Each have a correct spelling of a word, the level of difficulty, and typing progress
-public class DifficultWords {
+public class DifficultWords implements Writable {
     private String spelling;
     private int difficultyLevel;
     private boolean isTyped;
@@ -105,10 +108,12 @@ public class DifficultWords {
         return spellingRandomized;
     }
 
-
-
-
-
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("word", spelling);
+        return json;
+    }
 
 
 }

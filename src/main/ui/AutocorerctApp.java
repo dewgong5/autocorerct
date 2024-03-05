@@ -2,17 +2,28 @@ package ui;
 
 import model.DifficultWords;
 import model.DifficultWordsList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+//CITATION: methods for saving files inspired by CPSC 210
 public class AutocorerctApp {
+    private static final String JSON_STORE = "./data/difficultwordslist.json";
     private final Scanner input;
-    private final DifficultWordsList list;
+    private DifficultWordsList list;
     private boolean firstCustomization;
     private final DifficultWordsList gameOrder;
     private int attempts;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+
+
 
     //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: creates an AutocorectApp class and runs the app
@@ -23,6 +34,8 @@ public class AutocorerctApp {
         input = new Scanner(System.in);
         gameOrder = new DifficultWordsList();
         attempts = 0;
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         startApp();
 
     }
@@ -37,16 +50,22 @@ public class AutocorerctApp {
 
     }
 
+    //MODIFIES: this
     //CITATION: displayHome method is inspired displayMenu method from UBC CPSC 210's TellerApp
-    //EFFECTS: displays the home screen of the game, where the user can view their options
+    //EFFECTS: displays the home screen of the game, where the user can view their options,
+    // checks whether this is the first customization or not (incase the user loaded data)
     private void displayHome() {
+        firstCustomization = list.getListOfDifficultWords().size() == 0;
+
         System.out.println("=======================================================");
         System.out.println("      Welcome to Autocorect (Beta Version 1.0)");
         System.out.println("=======================================================");
         System.out.println("\n Let's see whether you can do without autocorrect :)");
         System.out.println("\t [1] Play");
         System.out.println("\t [2] Customization");
-        System.out.println("\t [3] Exit");
+        System.out.println("\t [3] Save Current Level");
+        System.out.println("\t [4] Load Past Level");
+        System.out.println("\t [5] Exit");
         System.out.print("\n Please type a number to continue: ");
 
 
@@ -64,9 +83,40 @@ public class AutocorerctApp {
             displayCustomization();
         } else if (i == 3) {
             System.out.println();
+            saveDifficultWordsList();
+            startApp();
+        } else if (i == 4) {
+            System.out.println();
+            loadDifficultWordsList();
+            startApp();
+        } else if (i == 5) {
+            System.out.println();
             System.out.println("Quitting....");
             System.out.println("Thanks for playing!");
             System.exit(0);
+        }
+    }
+
+    // EFFECTS: saves the difficult words to file
+    private void saveDifficultWordsList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(list);
+            jsonWriter.close();
+            System.out.println("Saved a list of " + list.getListOfDifficultWords().size() + " words to" + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads DifficultWordsList from file
+    private void loadDifficultWordsList() {
+        try {
+            list = jsonReader.read();
+            System.out.println("Load a list of " + list.getListOfDifficultWords().size() + " words from" + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

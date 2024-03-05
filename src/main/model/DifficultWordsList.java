@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //Represents a list of DifficultWords which the user can view, add a word, and remove a word
 //This list would also get be the one used in main game to test the user on the spelling accuracy of these words
-public class DifficultWordsList {
+public class DifficultWordsList implements Writable {
     private final ArrayList<DifficultWords> listOfDifficultWords;
 
     //EFFECTS: creates a new list of Difficult Words
@@ -28,6 +32,24 @@ public class DifficultWordsList {
 
     public ArrayList<DifficultWords> getListOfDifficultWords() {
         return listOfDifficultWords;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("listOfDifficultWords", listOfDifficultWordsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns DifficultWords in this DifficultWordsList as a JSON array
+    private JSONArray listOfDifficultWordsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (DifficultWords dw : listOfDifficultWords) {
+            jsonArray.put(dw.toJson());
+        }
+
+        return jsonArray;
     }
 
 }
