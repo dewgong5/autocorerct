@@ -6,6 +6,7 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 
+//CITATION: Json Methods inspired by CPSC 210's JsonSerializationDemo
 //Represents a list of DifficultWords which the user can view, add a word, and remove a word
 //This list would also get be the one used in main game to test the user on the spelling accuracy of these words
 public class DifficultWordsList implements Writable {

@@ -6,6 +6,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//CITATION: JSON methods inspired by CPSC 210's JsonSerializationDemo
 //Represents an individual difficult word to be used in the game
 // Each have a correct spelling of a word, the level of difficulty, and typing progress
 public class DifficultWords implements Writable {

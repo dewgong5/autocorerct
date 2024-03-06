@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
-//CITATION: methods for saving files inspired by CPSC 210
+//CITATION: methods for saving Json files inspired by CPSC 210
 public class AutocorerctApp {
     private static final String JSON_STORE = "./data/difficultwordslist.json";
     private Scanner input;
