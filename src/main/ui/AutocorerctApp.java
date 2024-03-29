@@ -11,6 +11,13 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+
+
 //CITATION: methods for saving Json files inspired by CPSC 210
 public class AutocorerctApp {
     private static final String JSON_STORE = "./data/difficultwordslist.json";
@@ -21,9 +28,6 @@ public class AutocorerctApp {
     private int attempts;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
-
-
-
 
     //MODIFIES: this, ListOfDifficultWords, DifficultWords
     //EFFECTS: creates an AutocorectApp class and runs the app
@@ -41,8 +45,9 @@ public class AutocorerctApp {
     }
 
     //MODIFIES: this, ListOfDifficultWords, DifficultWords
-    //EFFECTS: starts the app and displays the Home section and takes user inputs, user has to type 1,2, or 3
-    private void startApp() {
+    //EFFECTS: starts the app (including frame) and displays the Home section and takes user inputs, user has to type 1,2, or 3
+    protected void startApp() {
+
         displayHome();
         String userType = input.next();
         int response = Integer.parseInt(userType);
@@ -303,5 +308,6 @@ public class AutocorerctApp {
             displayCustomization();
         }
     }
+
 
 }

@@ -6,10 +6,6 @@ import java.io.FileNotFoundException;
 //runs the App
 public class Main {
     public static void main(String[] args) {
-        try {
-            new AutocorerctApp();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+        new AppGUI();
     }
 }
