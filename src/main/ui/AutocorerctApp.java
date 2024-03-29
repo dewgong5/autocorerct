@@ -45,7 +45,8 @@ public class AutocorerctApp {
     }
 
     //MODIFIES: this, ListOfDifficultWords, DifficultWords
-    //EFFECTS: starts the app (including frame) and displays the Home section and takes user inputs, user has to type 1,2, or 3
+    //EFFECTS: starts the app (including frame) and displays the Home section and takes user inputs,
+    // user has to type 1,2, or 3
     protected void startApp() {
 
         displayHome();
