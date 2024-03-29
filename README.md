@@ -24,3 +24,15 @@ Here are several user stories for the project:
 - As a user, I want to be able to **get feedback** on the accuracy of my typing and obtaining a score for every correct spelling of a word.
 - As a user, I want to be able to be reminded to **save** the current list of difficult words and choose whether to save or not.
 - As a user, I want to be able to **load** a previous list of difficult words when I start the application.
+
+## Instructions for Grader
+Here are several specific instructions:
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by pressing the Customize button, typing any word within the add word text field,
+ and pressing enter would add the DifficultWords into the DifficultWordsList. You can repeat this process for as many times as you want.
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" (removing words) by pressing Customize and typing on the remove word text field and pressing enter to remove a word, 
+ make sure the word has been added before trying to remove it and the changes will take effect immediately.
+- You can locate my visual component by pressing the Image button to show a certain image and close to close the image.
+- You can save the state of my application by pressing the Save button at the Home screen
+- You can load the state of my application by pressing the Load button at the Home screen (make sure to have something to load otherwise, it'll reset everything)
+
+   
