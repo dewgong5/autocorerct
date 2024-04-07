@@ -1,1 +1,5 @@
-{"listOfDifficultWords": [{"word": "a"}]}
+{"listOfDifficultWords": [
+    {"word": "a"},
+    {"word": "b"},
+    {"word": "c"}
+]}

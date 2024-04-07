@@ -2,6 +2,8 @@ package ui;
 
 import model.DifficultWords;
 import model.DifficultWordsList;
+import model.Event;
+import model.EventLog;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -77,7 +79,7 @@ public class AppGUI extends JFrame {
         imgButton.setBackground(Color.white);
         removeButton = new JButton("Back");
         removeButton.setBackground(Color.white);
-        textFieldPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        cusGUI();
 
 
     }
@@ -104,6 +106,7 @@ public class AppGUI extends JFrame {
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().removeAll();
                 switchToHome();
             }
         });
@@ -120,6 +123,7 @@ public class AppGUI extends JFrame {
         loadButton.setFocusPainted(false);
         exitButton.setFocusPainted(false);
         imgButton.setFocusPainted(false);
+        removeButton.setFocusPainted(false);
     }
 
     //MODIFY: this
@@ -147,8 +151,6 @@ public class AppGUI extends JFrame {
         playPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         playPanel.add(imgButton);
         frame.add(playPanel, BorderLayout.CENTER);
-        textFieldPanel.setBackground(customColor);
-        cusGUI();
 
     }
 
@@ -172,11 +174,20 @@ public class AppGUI extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                printLog(EventLog.getInstance());
                 System.exit(0);
             }
         });
 
     }
+
+    //EFFECTS: prints all the events from the event log
+    public void printLog(EventLog el) {
+        for (Event e: el) {
+            System.out.println(e);
+        }
+    }
+
 
     //MODIFY: this
     //EFFECTS: enables image to be displayed upon click and closed upon another click
@@ -215,7 +226,6 @@ public class AppGUI extends JFrame {
         frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
         removeWordGUI();
         addWordGUI();
-        removeWordGUI();
         extensionCus();
         frame.revalidate();
         frame.repaint();
@@ -234,6 +244,7 @@ public class AppGUI extends JFrame {
     //MODIFIES: this
     //EFFECTS: adds certain components for customize screen
     public void cusGUI() {
+
         cusButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -243,11 +254,18 @@ public class AppGUI extends JFrame {
     }
 
     //MODIFIES: this
+    //EFFECTS: adds a few effects to the panel
+    public void panelAdd(JPanel t) {
+        t.setBackground(customColor);
+        t.setLayout(new BoxLayout(textFieldPanel, BoxLayout.Y_AXIS));
+        t.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+    }
+
+    //MODIFIES: this
     //EFFECTS: adds a bunch of panels for the Customization screen and calls customization GUIs
     public void extensionCus() {
-        checkFirst();
-        textFieldPanel.setLayout(new BoxLayout(textFieldPanel, BoxLayout.Y_AXIS));
-        textFieldPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 30));
+        textFieldPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelAdd(textFieldPanel);
         textField.setMaximumSize(new Dimension(100, 20));
         remove.setMaximumSize(new Dimension(100, 20));
         JLabel ad = new JLabel("Add your words below!");
@@ -287,7 +305,6 @@ public class AppGUI extends JFrame {
                     }
                     label.setText("<html>" + completeList + "</html>");
                     textField.setText("");
-                    System.out.println(var);
                 }
             }
         });
@@ -319,7 +336,6 @@ public class AppGUI extends JFrame {
                     for (DifficultWords w : list.getListOfDifficultWords()) {
                         if (w.getSpelling().equals(var)) {
                             list.removeWord(w);
-                            System.out.println("help");
                             StringBuilder completeList = new StringBuilder();
 
                             for (DifficultWords wo : list.getListOfDifficultWords()) {

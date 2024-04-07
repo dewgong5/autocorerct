@@ -21,6 +21,7 @@ public class DifficultWordsList implements Writable {
     //MODIFIES: this
     //EFFECTS: adds the given word into listOfDifficultWords
     public void addWord(DifficultWords difficultWord) {
+        EventLog.getInstance().logEvent(new Event("added " + difficultWord.getSpelling() + " to list"));
         listOfDifficultWords.add(difficultWord);
     }
 
@@ -28,6 +29,7 @@ public class DifficultWordsList implements Writable {
     //MODIFIES: this
     //EFFECTS: removes the given word into listOfDifficultWords
     public void removeWord(DifficultWords difficultWord) {
+        EventLog.getInstance().logEvent(new Event("removed " + difficultWord.getSpelling() + " from list"));
         listOfDifficultWords.remove(difficultWord);
     }
 
