@@ -35,4 +35,6 @@ Here are several specific instructions:
 - You can save the state of my application by pressing the Save button at the Home screen
 - You can load the state of my application by pressing the Load button at the Home screen (make sure to have something to load otherwise, it'll reset everything)
 
-   
+## Phase 4: Task 3
+- Looking at the design, I would refactor the AutocorectApp class to contain smaller classes, each dedicated to a specific part of the game. The problem right now is the class feels like a mess of codes with different functionality and just mashed up together so it can run.
+- Ideally, I would have wanted both the AppGUI and AutocorectApp to work together, where changes in one aspect would be seen in the other and it would make the code more clean and structured, only depending on one superclass which can be called by main.
