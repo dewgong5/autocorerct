@@ -20,8 +20,6 @@ public class AppGUI extends JFrame {
     private JFrame frame;
     private JFrame imageFrame;
     private JPanel textFieldPanel;
-
-    private AutocorerctApp app;
     private JLabel titlabel;
     private JPanel titlePanel;
     private JButton playButton;
